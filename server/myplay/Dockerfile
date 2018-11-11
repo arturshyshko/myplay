@@ -10,6 +10,6 @@ RUN mkdir /app
 WORKDIR /app
 ADD . /app
 
-RUN chmod +x /app/bin/*.sh
+RUN /bin/bash -c "chmod +x /app/bin/*.sh"
 
 CMD bash -c "bin/run.sh"

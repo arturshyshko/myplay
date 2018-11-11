@@ -11,9 +11,22 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import dj_database_url
+from dotenv import load_dotenv
+
+
+PROJECT_NAME = 'myplay'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Root of the whole project
+PROJECT_ROOT = os.path.dirname(os.path.dirname(BASE_DIR))
+
+DOTENV_FILE = os.environ.get('DOTENV_PATH', os.path.join(PROJECT_ROOT, 'docker', '.env'))
+if os.path.exists(DOTENV_FILE):
+    load_dotenv(DOTENV_FILE)
+else:
+    DOTENV_FILE = None
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -73,11 +87,9 @@ WSGI_APPLICATION = 'myplay.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+DATABASE_URL = os.environ.get('DATABASE_URL', f'postgres://postgres@db/{PROJECT_NAME}')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.parse(DATABASE_URL)
 }
 
 
