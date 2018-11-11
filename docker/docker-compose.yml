@@ -1,0 +1,11 @@
+version: "3.2"
+
+services:
+  apiserver:
+    build:
+      context: ../server/myplay
+      dockerfile: Dockerfile
+    command: bash -c "bin/run.sh"
+    ports:
+      - "8000:8000"
+    restart: always
