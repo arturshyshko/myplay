@@ -1,0 +1,18 @@
+
+> web@0.1.0 start /Users/oleh/sublime_projects/vprs-lab-1/client/web
+> react-app-rewired start
+
+123
+/Users/oleh/sublime_projects/vprs-lab-1/client/web/reactstatic
+Starting the development server...
+
+Compiled successfully!
+
+You can now view web in the browser.
+
+  Local:            http://localhost:3000/
+  On Your Network:  http://192.168.10.223:3000/
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
