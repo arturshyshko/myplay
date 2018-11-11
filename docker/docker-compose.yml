@@ -8,10 +8,21 @@ services:
     command: nginx -g 'daemon off;'
     depends_on:
       - apiserver
+      - clientapp
     ports:
       - "${FRONT_SERVER_PORT}:8080"
     volumes:
       - ../server/myplay/.build/static:/static
+    restart: always
+  clientapp:
+    build:
+      context: ../client/web
+      dockerfile: Dockerfile
+    command: npm start
+    ports:
+      - "${CLIENT_APP_PORT}:3000"
+    volumes:
+      - ../client/web:/app
     restart: always
   apiserver:
     build:
