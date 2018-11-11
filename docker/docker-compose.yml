@@ -23,6 +23,8 @@ services:
       - "${CLIENT_APP_PORT}:3000"
     volumes:
       - ../client/web:/app
+    environment:
+      - APP_ENV
     restart: always
   apiserver:
     build:
@@ -36,6 +38,7 @@ services:
     volumes:
       - ../server/myplay:/app
     environment:
+      - APP_ENV
       - CREATE_DATABASE=True
       - WAIT_FOR_HOST_PORT=db:5432
       - LOAD_FIXTURES
