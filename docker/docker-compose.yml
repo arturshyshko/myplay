@@ -9,15 +9,28 @@ services:
     depends_on:
       - apiserver
     ports:
-      - "8080:8080"
+      - "${FRONT_SERVER_PORT}:8080"
+    volumes:
+      - ../server/myplay/.build/static:/static
     restart: always
   apiserver:
     build:
       context: ../server/myplay
       dockerfile: Dockerfile
     command: bash -c "bin/run.sh"
+    depends_on:
+      - db
     ports:
-      - "8000:8000"
+      - "${API_SERVER_PORT}:8000"
     volumes:
       - ../server/myplay:/app
+    environment:
+      - CREATE_DATABASE=True
+      - WAIT_FOR_HOST_PORT=db:5432
+      - LOAD_FIXTURES
+      - COLLECT_STATIC=True
     restart: always
+  db:
+    image: postgres:9.6-alpine
+    ports:
+      - "${DB_PORT}:5432"

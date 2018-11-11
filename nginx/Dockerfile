@@ -2,6 +2,6 @@ FROM nginx:alpine
 
 EXPOSE 8080
 
-COPY uwsgi.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD nginx -g 'daemon off;'
