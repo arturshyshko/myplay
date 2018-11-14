@@ -43,6 +43,7 @@ services:
       - WAIT_FOR_HOST_PORT=db:5432
       - LOAD_FIXTURES
       - COLLECT_STATIC=True
+      - LOG_LEVEL
     restart: always
   db:
     image: postgres:9.6-alpine
