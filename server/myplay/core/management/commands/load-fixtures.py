@@ -7,13 +7,9 @@ class Command(BaseCommand):
     help = 'Load fixtures to db'
 
     def handle(self, *args, **options):
-        user, _ = User.objects.update_or_create(
+        user, _ = User.objects.get_or_create(
             email='test@gmail.com',
             username='admin',
-            defaults={
-                'first_name': 'test',
-                'last_name': 'test',
-            }
         )
 
         user.set_password('Admin1234')
