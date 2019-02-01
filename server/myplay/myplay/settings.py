@@ -150,7 +150,7 @@ LOGGING = {
     'loggers': {
         # root logger
         '': {
-            'level': os.environ.get('LOG_LEVEL', 'info'),
+            'level': os.environ.get('LOG_LEVEL', 'INFO'),
             'handlers': ['console'],
         },
     },
